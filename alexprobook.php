@@ -1,11 +1,11 @@
 <?php
 /*
     Plugin Name: Alex Pro Book
-    Plugin URI: github.com/myorb/alexprobook
+    Plugin URI: https://github.com/myorb/AlexProBook
     Description: An address book.
     Version: 1.0
     Author: Alexander V. Shalaiev
-    Author URI: github.com/myorb 
+    Author URI: //github.com/myorb
 
     Copyright 2014  Alex V. Shalaiev  (email : itmedved@gmail.com)
 
