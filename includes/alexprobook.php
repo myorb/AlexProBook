@@ -68,11 +68,11 @@ class AlexProBook {
                 'last_name' => $wpdb->escape($_POST['last_name']),
                 'cellphone' => $wpdb->escape($_POST['cellphone'])
             )
-        );?>
-        <div id="message" class="updated fade">
-            <p><strong>Row was added.</strong> <a href="admin.php?page=alexprobook/alexprobook.php">Continue &raquo;</a></p>
-        </div>
-    <?php
+        );
+        echo '<div id="message" class="updated fade">
+                <p><strong>Row was added.</strong> <a href="admin.php?page=alexprobook/alexprobook.php">Continue &raquo;</a></p>
+              </div>';
+    
     }
 
     function delite(){
@@ -114,31 +114,30 @@ class AlexProBook {
                 array( 'id' => $wpdb->escape($_GET['id']) )
             );
             echo '<div id="message" class="updated fade"><p><strong>The row has been updated.</strong><a href="admin.php?page=alexprobook/alexprobook.php">Continue &raquo;<a/></p></div>';
-        } else { ?>
-            <div class="wrap">
-                <h2><a name="new"></a>Edit Address</h2>
-                <form action="admin.php?page=alexprobook/alexprobook.php&action=edit&id=<?php echo $row->id; ?>" method="post">
-                    <?php echo $this->getForm($row); ?>
-                    <input type="submit" name="save"/>
-                </form>
-            </div>
-        <?php }
+        } else { 
+            echo '<div class="wrap">
+                            <h2><a name="new"></a>Edit Address</h2>';
+            echo '<form action="admin.php?page=alexprobook/alexprobook.php&action=edit&id='. $row->id; .'method="post">';
+            echo $this->getForm($row); 
+            echo '<input type="submit" name="save"/>
+                    </form>
+                </div>';
+        }
 
     }
 
     public function view(){
         global $wpdb;
-        ?>
-        <div class="wrap">
-
-            <table class="wp-list-table widefat fixed posts">
-                <thead>
-                    <tr>
-                        <th>First name</th><th>Last name</th><th>Phone</th><th>Options</th>
-                    </tr>
-                </thead>
-                <tbody id="the-list">
-                <?php $sql = "SELECT * FROM ".$this->getTableName()." ORDER BY last_name, first_name";
+        echo '<div class="wrap">
+        
+                    <table class="wp-list-table widefat fixed posts">
+                        <thead>
+                            <tr>
+                                <th>First name</th><th>Last name</th><th>Phone</th><th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody id="the-list">'
+                    $sql = "SELECT * FROM ".$this->getTableName()." ORDER BY last_name, first_name";
                     $results = $wpdb->get_results($sql);
                     foreach ($results as $row) {
                         echo "<tr><td>".$row->first_name."</td>
@@ -147,18 +146,15 @@ class AlexProBook {
                         <td><a href='admin.php?page=alexprobook/alexprobook.php&action=edit&id=".$row->id."'>[Edit]</a>
                         <a href='admin.php?page=alexprobook/alexprobook.php&action=delete&id=".$row->id."'>[Delete]</a></td>
                     </tr>";
-                    } ?>
-                </tbody>
-            </table>
+                    }
 
-            <h2>Add adress</h2>
-            <form action="admin.php?page=alexprobook/alexprobook.php" method="post">
-                <?php echo $this->getForm(); ?>
-                <input type="submit"  name="new" />
-            </form>
-        </div>
-    <?php
-
+            echo '</tbody></table>;
+                        <h2>Add adress</h2>
+                        <form action="admin.php?page=alexprobook/alexprobook.php" method="post">';
+            echo $this->getForm();
+            echo '<input type="submit"  name="new" />
+                        </form>
+                    </div>';
     }
 
     function getForm($data='null') {
